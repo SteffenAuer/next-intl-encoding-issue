@@ -8,13 +8,13 @@ export default function IndexPage() {
     <Link href={{
       pathname: '/test/[param]',
       params: {
-        param: 'Foo/Bar'
+        param: 'Foo / Bar %'
       }
     }}>Wrong: {getPathname({
       href: {
       pathname: '/test/[param]',
       params: {
-      param: 'Foo/Bar'
+      param: 'Foo / Bar %'
     }
     },
       locale: 'en'
@@ -22,7 +22,24 @@ export default function IndexPage() {
     </p>
 
     <p>
-    <a href={`/en/test/Foo%2FBar`}>Correct: /en/test/Foo%2FBar</a>
+    <Link href={{
+      pathname: '/test/[param]',
+      params: {
+        param: 'Foo%20%2F%20Bar%20%25'
+      }
+    }}>Encoded: {getPathname({
+      href: {
+      pathname: '/test/[param]',
+      params: {
+      param: 'Foo%20%2F%20Bar%20%25'
+    }
+    },
+      locale: 'en'
+    })}</Link>
+    </p>
+
+    <p>
+    <a href={`/en/test/Foo%20%2F%20Bar%20%25`}>Correct: /en/test/Foo%20%2F%20Bar%20%25</a>
     </p>
   </>;
 }
